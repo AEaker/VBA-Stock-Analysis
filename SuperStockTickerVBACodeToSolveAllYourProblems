@@ -108,7 +108,7 @@ Sub StockChangeCheck():
                 ws.Cells(r, 10).Interior.Color = rgbGreen
             End If
         Next r
-        SummaryTableRow = 2
+       
        
         'Make everything look nice
         ws.Cells.EntireColumn.AutoFit

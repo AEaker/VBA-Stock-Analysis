@@ -11,7 +11,7 @@ Sub StockChangeCheck():
     
     Dim count As Integer
     Dim SummaryTableRow As Integer
-    SummaryTableRow = 2
+   
 
     'Do I even need this?
     Dim MaxInc As Double
@@ -32,7 +32,8 @@ Sub StockChangeCheck():
         ws.Range("M4").Value = "Greatest Total Volume"
         ws.Range("N1").Value = "Ticker"
         ws.Range("O1").Value = "Value"
-    
+   
+    SummaryTableRow = 2
     TSV = 0
     YearClose = 0
     YearOpen = 0
@@ -72,13 +73,15 @@ Sub StockChangeCheck():
         'Bonus
         ResultTickLast = ws.Range("I2").End(xlDown).Row
         
+'Is this cheating? 
         MaxInc = ws.Application.WorksheetFunction.Max(ws.Range("K:K"))
             ws.Range("O2").Value = Format(MaxInc, "00.00%")
         MaxDec = ws.Application.WorksheetFunction.Min(ws.Range("K:K"))
             ws.Range("O3").Value = Format(MaxDec, "00.00%")
         MaxTotVol = ws.Application.WorksheetFunction.Max(ws.Range("L:L"))
             ws.Range("O4").Value = MaxTotVol
-            
+'cuz it werks.
+
         For r = 2 To ResultTickLast
         If ws.Cells(r, 12).Value = MaxTotVol Then
             MaxTotVolName = ws.Cells(r, 9).Value
@@ -92,11 +95,12 @@ Sub StockChangeCheck():
             MaxDecName = ws.Cells(r, 9).Value
             Else
             End If
-            
+
         ws.Range("N4").Value = MaxTotVolName
         ws.Range("N3").Value = MaxDecName
         ws.Range("N2").Value = MaxIncName
-        
+'yes, I did need that. I think,        
+
         'Formatting
         If ws.Cells(r, 10).Value <= 0 Then
                 ws.Cells(r, 10).Interior.Color = rgbRed
